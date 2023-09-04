@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "image": "americano.jpg",
+    "category": "coffee",
+    "name": "Americano",
+    "description": "A classic black coffee made by diluting espresso. It has a strong and bold flavor.",
+    "price": 25000
+  },
+  {
+    "id": 2,
+    "image": "latte.jpg",
+    "category": "coffee",
+    "name": "Latte",
+    "description": "A smooth and creamy espresso-based coffee with steamed milk.",
+    "price": 28000
+  },
+  {
+    "id": 3,
+    "image": "cappucino.jpg",
+    "category": "coffee",
+    "name": "Cappuccino",
+    "description": "A classic coffee drink made with espresso, steamed milk, and frothed milk foam.",
+    "price": 30000
+  },
+  {
+    "id": 4,
+    "image": "green-tea.jpg",
+    "category": "tea",
+    "name": "Green Tea",
+    "description": "A soothing and healthy green tea made from high-quality tea leaves.",
+    "price": 20000
+  },
+  {
+    "id": 5,
+    "image": "chailatte.jpg",
+    "category": "tea",
+    "name": "Chai Latte",
+    "description": "A spiced tea latte made with black tea, spices, and steamed milk.",
+    "price": 26000
+  },
+  {
+    "id": 6,
+    "image": "iced-choco.jpg",
+    "category": "chocolate",
+    "name": "Choco Vanilla",
+    "description": "Rich chocolate and creamy vanilla harmonize in a delightful fusion.",
+    "price": 22000
+  },
+  {
+    "id": 7,
+    "image": "choco-mocha.jpeg",
+    "category": "chocolate",
+    "name": "Chocolate Mocha",
+    "description": "An indulgent blend of espresso, steamed milk, and chocolate.",
+    "price": 28000
+  },
+  {
+    "id": 8,
+    "image": "french-fries.jpg",
+    "category": "snacks",
+    "name": "French Fries",
+    "description": "Crispy potato chips seasoned with a hint of salt.",
+    "price": 15000
+  },
+  {
+    "id": 9,
+    "image": "croissant.jpg",
+    "category": "snacks",
+    "name": "Croissant",
+    "description": "Buttery, flaky, and simply irresistible.",
+    "price": 18000
+  },
+  {
+    "id": 10,
+    "image": "vanilla-ice-cream.jpg",
+    "category": "ice cream",
+    "name": "Vanilla Ice Cream",
+    "description": "Classic vanilla ice cream with a creamy texture.",
+    "price": 12000
+  },
+  {
+    "id": 11,
+    "image": "choco-ice-cream.jpg",
+    "category": "ice cream",
+    "name": "Chocolate Chip Ice Cream",
+    "description": "Rich chocolate ice cream with chunks of chocolate chips.",
+    "price": 13000
+  },
+  {
+    "id": 12,
+    "image": "waffle.jpg",
+    "category": "snacks",
+    "name": "Crispy Maple Waffle",
+    "description": "A traditional waffle served with maple syrup and butter.",
+    "price": 18000
+  }
+]
