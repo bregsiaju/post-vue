@@ -1,13 +1,13 @@
 <script>
 import { RouterView } from 'vue-router'
-import Navbar from './components/Navbar.vue'
+import NavBar from './components/NavBar.vue'
 import SideBar from './components/SideBar.vue'
 import CollapsedSidebar from './components/CollapsedSidebar.vue'
 
 export default {
   components: {
     RouterView,
-    Navbar,
+    NavBar,
     SideBar,
     CollapsedSidebar
   },
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <template>
-  <Navbar :class="{ 'menu-collapse': isCollapsed }" />
+  <NavBar :class="{ 'menu-collapse': isCollapsed }" />
   <CollapsedSidebar v-if="isCollapsed" @expand="expandSide" />
   <SideBar v-else @collapse="collapseSide" />
   <main :class="{ 'menu-collapse': isCollapsed }">
