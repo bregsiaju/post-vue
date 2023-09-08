@@ -21,34 +21,33 @@
     </div>
     <div class="row mt-4">
       <div class="col">
-        <div class="total-items">Total items:</div>
+        <div class="total-items">Total items: {{ getTotalItems }}</div>
       </div>
       <div class="col text-end">
-        <button class="btn btn-sm btn-outline-red btn-remove">Remove all</button>
+        <button v-if="getTotalItems > 0" class="btn btn-sm btn-outline-red btn-remove" @click="cartStore.$reset">Remove
+          all</button>
       </div>
     </div>
-    <div class="order-list mt-3">
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
+    <p v-if="getTotalItems === 0" class="text-center mt-3 mb-5">The order list is empty</p>
+    <div v-else class="order-list mt-3">
+      <CartItem v-for="item in carts" :key="item.id" :dataMenu="item" />
     </div>
-    <div class="total-payment px-3 py-2 mt-3">
+    <div v-if="getTotalItems > 0" class="total-payment px-3 py-2 mt-3">
       <div class="row">
         <div class="col">Subtotal</div>
-        <div class="col text-end fw-medium">Rp68.000</div>
+        <div class="col text-end fw-medium">Rp{{ $rupiah(getTotalPrice) }}</div>
       </div>
       <div class="row">
-        <div class="col">Tax</div>
-        <div class="col text-end fw-medium">Rp3.400</div>
+        <div class="col">Tax 5%</div>
+        <div class="col text-end fw-medium">Rp{{ $rupiah(getTax) || 0 }}</div>
       </div>
       <hr>
       <div class="row text-dark-purple fw-bold">
         <div class="col">Total</div>
-        <div class="col text-end">Rp71.400</div>
+        <div class="col text-end">Rp{{ $rupiah(totalPayment) }}</div>
       </div>
     </div>
-    <div class="payment-methods row">
+    <div v-if="getTotalItems > 0" class="payment-methods row">
       <div v-for="payment in paymentOption" :key="payment.id" class="col"
         :class="{ selected: order.paymentMethod === payment.name }" @click="order.paymentMethod = payment.name">
         <div class="d-flex gap-2 align-items-center justify-content-center">
@@ -57,12 +56,15 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-checkout text-white w-100 fw-bold">Process order</button>
+    <button class="btn btn-checkout text-white w-100 fw-bold" :disabled="getTotalItems < 1">Process order</button>
   </div>
 </template>
 
 <script>
-import { Icon } from '@iconify/vue';
+import { computed } from 'vue'
+import { Icon } from '@iconify/vue'
+import { storeToRefs } from 'pinia'
+import { useCartStore } from '../stores/cart'
 import CartItem from '../components/CartItem.vue'
 
 export default {
@@ -73,7 +75,6 @@ export default {
   },
   data() {
     return {
-      cart: [],
       paymentOption: [
         {
           id: 1,
@@ -102,6 +103,18 @@ export default {
 }
 </script>
 
+<script setup>
+const { carts, getTotalItems, getTotalPrice } = storeToRefs(useCartStore())
+const cartStore = useCartStore()
+const getTax = computed(() => {
+  // console.log(getTotalPrice)
+  return (getTotalPrice.value * 0.05)
+})
+const totalPayment = computed(() => {
+  return getTotalPrice.value + getTax.value
+})
+</script>
+
 <style lang="scss" scoped>
 .order-details {
   border-radius: 6px;
@@ -119,6 +132,7 @@ export default {
   justify-content: center;
   align-items: center;
   font-weight: 500;
+  min-height: 28px;
 }
 
 .btn-remove {
@@ -131,7 +145,7 @@ export default {
 }
 
 .order-list {
-  max-height: 156px;
+  max-height: 158px;
   overflow-y: auto;
 }
 

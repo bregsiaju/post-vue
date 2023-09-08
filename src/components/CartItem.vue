@@ -2,19 +2,19 @@
   <div class="order-list-item position-relative mb-3">
     <div class="d-flex align-items-center gap-2">
       <div class="ratio ratio-1x1 rounded overflow-hidden">
-        <img :src="'/img/iced-choco.jpg'" class="object-fit-cover" alt="Chocolate">
+        <img :src="`/img/${dataMenu.image}`" class="object-fit-cover" alt="Chocolate">
       </div>
       <div>
-        <p class="mb-1">Expresso</p>
-        <p class="mb-0"><small>Rp21.000</small></p>
+        <p class="mb-1">{{ dataMenu.name }}</p>
+        <p class="mb-0"><small>Rp{{ $rupiah(dataMenu.price) }}</small></p>
       </div>
     </div>
     <div class="position-absolute bottom-0 end-0 d-flex align-items-center gap-2">
-      <Icon icon="iconoir:minus" width="18" class="icon-minus" />
+      <Icon icon="iconoir:minus" width="18" class="icon-minus" @click="decreaseQty(dataMenu.id)" />
       <span class="qty text-center">
-        <input type="number" class="form-control" value="2" min="0">
+        <input type="number" class="form-control" :value="dataMenu.qty" min="0">
       </span>
-      <Icon icon="iconoir:plus" width="18" class="icon-plus" />
+      <Icon icon="iconoir:plus" width="18" class="icon-plus" @click="increaseQty(dataMenu.id)" />
     </div>
   </div>
 </template>
@@ -26,8 +26,19 @@ export default {
   name: 'CartItem',
   components: {
     Icon
+  },
+  props: {
+    dataMenu: {
+      type: Object,
+      required: true
+    }
   }
 }
+</script>
+
+<script setup>
+import { useCartStore } from '../stores/cart'
+const { increaseQty, decreaseQty } = useCartStore()
 </script>
 
 <style lang="scss" scoped>
