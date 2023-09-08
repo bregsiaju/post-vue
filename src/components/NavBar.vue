@@ -8,11 +8,11 @@
         <!-- search box -->
         <form class="d-flex position-relative" role="search">
           <input class="form-control" type="search" placeholder="Search menu" aria-label="Search" name="search">
-          <iconify-icon icon="mdi:search" class="text-dark-purple icon-search" height="24"></iconify-icon>
+          <Icon icon="mdi:search" class="text-dark-purple icon-search" height="24"></Icon>
         </form>
         <div class="profil d-flex align-items-center gap-4">
           <div class="position-relative">
-            <iconify-icon icon="mi:notification" height="24"></iconify-icon>
+            <Icon icon="mi:notification" height="24"></Icon>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               99+
               <span class="visually-hidden">unread messages</span>
@@ -32,8 +32,13 @@
 </template>
 
 <script>
+import { Icon } from '@iconify/vue';
+
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  components: {
+    Icon
+  }
 }
 </script>
 
