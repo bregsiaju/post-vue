@@ -12,16 +12,21 @@
         </div>
         <MenuContainer />
       </div>
+      <div class="col-4 p-4">
+        <OrderList />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import MenuContainer from '../components/MenuContainer.vue';
+import OrderList from '../components/OrderList.vue';
 
 export default {
   components: {
-    MenuContainer
+    MenuContainer,
+    OrderList
   },
   data() {
     return {
