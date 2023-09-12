@@ -170,6 +170,7 @@ const totalPayment = computed(() => {
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
     padding: 10px 0;
     border: 1px solid transparent;
+    cursor: pointer;
 
     &.selected {
       color: white;

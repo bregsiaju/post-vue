@@ -6,11 +6,6 @@ export const useMenuStore = defineStore('menus', {
     loading: false,
     error: null
   }),
-  getters: {
-    getMenuPerCategory: (state) => {
-      return (categoryName) => state.menus.filter((item) => item.category === categoryName)
-    }
-  },
   actions: {
     async fetchMenus() {
       this.menus = []
@@ -21,6 +16,18 @@ export const useMenuStore = defineStore('menus', {
         this.error = error
       } finally {
         this.loading = false
+      }
+    },
+    async getMenuPerCategory(categoryName) {
+      await this.fetchMenus()
+      console.log('nama kategori ' + categoryName)
+
+      if (categoryName !== 'all') {
+        const filteredCategory = this.menus.filter((item) => item.category === categoryName)
+        console.log(filteredCategory)
+        this.menus = filteredCategory
+      } else {
+        await this.fetchMenus()
       }
     }
   }
