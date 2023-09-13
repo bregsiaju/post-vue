@@ -6,8 +6,9 @@
       </div>
       <div class="header-right container d-flex justify-content-between align-items-center flex-fill">
         <!-- search box -->
-        <form class="d-flex position-relative" role="search">
-          <input class="form-control" type="search" placeholder="Search menu" aria-label="Search" name="search">
+        <form class="d-flex position-relative" role="search" @submit.prevent="searchMenu(search)">
+          <input class="form-control" type="search" placeholder="Search menu" aria-label="Search" v-model="search"
+            required>
           <Icon icon="mdi:search" class="text-dark-purple icon-search" height="24"></Icon>
         </form>
         <div class="profil d-flex align-items-center gap-4">
@@ -31,15 +32,13 @@
   </nav>
 </template>
 
-<script>
+<script setup>
 import { Icon } from '@iconify/vue';
+import { ref } from 'vue';
+import { useMenuStore } from '../stores/menus';
 
-export default {
-  name: 'NavBar',
-  components: {
-    Icon
-  }
-}
+const search = ref('')
+const { searchMenu } = useMenuStore()
 </script>
 
 <style>

@@ -2,8 +2,17 @@
   <div class="pb-4">
     <h5 class="mb-3">Menu</h5>
     <p v-if="loading">Loading menu ...</p>
-    <p v-if="error">{{ error.message }}</p>
-    <div v-if="menus" class="row g-4 row-cols-lg-3">
+    <div v-if="isFilter || isSearch">
+      <div v-if="filteredMenus.length !== 0" class="row g-4 row-cols-lg-3">
+        <div v-for="menu in filteredMenus" :key="menu.id" class="col">
+          <CardMenu :data="menu" />
+        </div>
+      </div>
+      <div v-else class="row g-4 row-cols-lg-3">
+        <p class="w-100 text-center">Menu yang dicari tidak ditemukan.</p>
+      </div>
+    </div>
+    <div v-else-if="menus.length !== 0" class="row g-4 row-cols-lg-3">
       <div v-for="menu in menus" :key="menu.id" class="col">
         <CardMenu :data="menu" />
       </div>
@@ -16,7 +25,7 @@ import CardMenu from './CardMenu.vue'
 import { storeToRefs } from 'pinia'
 import { useMenuStore } from '../stores/menus'
 
-const { menus, loading, error } = storeToRefs(useMenuStore())
+const { menus, filteredMenus, isFilter, isSearch, loading } = storeToRefs(useMenuStore())
 const { fetchMenus } = useMenuStore()
 
 fetchMenus()
