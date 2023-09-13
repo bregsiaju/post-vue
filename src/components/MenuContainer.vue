@@ -17,6 +17,7 @@
         <CardMenu :data="menu" />
       </div>
     </div>
+
   </div>
 </template>
 
